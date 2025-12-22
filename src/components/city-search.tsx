@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import { CityTable } from "./city-table";
+import { CityBoard } from "./city-board";
 import Image from "next/image";
 import { Search } from "lucide-react";
 
@@ -68,9 +68,9 @@ export const CitySearch = ({
   }
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="flex flex-row w-[346px] h-[40px] gap-[7px]">
-        <div className="flex flex-row text-white border-1 border-bluish-100 rounded-[5px] gap-[8px] pl-[10px]">
+    <div className="flex flex-col items-center justify-center gap-[38px]">
+      <div className="flex flex-row w-[346px] h-[40px] gap-[9px]">
+        <div className="flex flex-row text-white w-[315px] border-1 border-bluish-100 rounded-[5px] gap-[8px] pl-[10px]">
           <button
             onClick={() => handleSearch(cityName)}
             disabled={loading}
@@ -82,7 +82,7 @@ export const CitySearch = ({
             placeholder="Buscar..."
             value={cityName}
             onChange={(e) => setCityName(e.target.value)}
-            className="placeholder:text-white/85"
+            className="placeholder:text-white/85 w-full"
           />
         </div>
         <Image src="/help-circle.svg" alt="help icon" width={24} height={24} />
@@ -92,12 +92,9 @@ export const CitySearch = ({
         <p className="text-red-600 font-medium">{error}</p>
       )}
 
-      <CityTable
+      <CityBoard
         cities={cities}
         loading={loading}
-        error={error}
-        onSelectCity={onSelectCity}
-        compare={compare}
       />
     </div>
   );

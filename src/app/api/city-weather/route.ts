@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
   const latitude = searchParams.get('latitude');
   const longitude = searchParams.get('longitude');
   const daily = ["temperature_2m_max", "temperature_2m_min", "precipitation_probability_max"];
-  const current = ["temperature_2m", "wind_speed_10m", "wind_direction_10m"];
+  const current = ["temperature_2m", "wind_speed_10m", "wind_direction_10m", "weather_code", "precipitation_probability"];
 
   const params = {
     latitude: latitude,
@@ -29,12 +29,15 @@ export async function GET(request: NextRequest) {
     const dailyResponse = response.daily()!;
     const utcOffsetSeconds = response.utcOffsetSeconds();
 
+
     const weatherData = {
       current: {
         time: new Date((Number(currentResponse.time()) + utcOffsetSeconds) * 1000),
-        temperature_2m: currentResponse.variables(0)!.value(),
+        temperature_2m: currentResponse.variables(0)!.value().toFixed(1),
         wind_speed_10m: currentResponse.variables(1)!.value(),
         wind_direction_10m: currentResponse.variables(2)!.value(),
+        weather_code: currentResponse.variables(3)!.value(),
+        precipitation_probability: currentResponse.variables(4)!.value(),
       },
       daily: {
         time: Array.from(

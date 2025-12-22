@@ -18,6 +18,8 @@ type Weather = {
     temperature_2m: number;
     wind_speed_10m: number;
     wind_direction_10m: number;
+    weather_code: number;
+    precipitation_probability: number;
   };
   daily: {
     time: string[];

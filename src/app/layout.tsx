@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
 import { Fredoka } from 'next/font/google'
 import Image from "next/image";
 
@@ -39,19 +38,11 @@ export default function RootLayout({
       </div>
       <div className="min-h-screen flex justify-center">
         <div
-          className="
-            w-full
-            px-[7px]
-            py-[9px]
-            rounded-[10px]
-            flex
-            flex-col
-          "
-        >
-          <div className="fondo rounded-[10px] flex flex-col h-full border-1 border-white/10">
-          <header className="flex items-center rounded-t-[10px] justify-center bg-white/10 gap-[6px] px-[93px] py-[5px] h-[93px]">
+          className="w-full px-[7px] py-[9px] rounded-[10px] flex flex-col">
+          <div className="fondo rounded-[10px] flex flex-col h-full border-1 border-white/20">
+          <header className="flex items-center rounded-t-[10px] justify-center gap-[6px] px-[93px] py-[5px] h-[93px]">
             <Image
-              src="/Union.svg"
+              src="/uw_logo.svg"
               alt="üweather logo"
               width={34.39}
               height={25.57}
@@ -62,8 +53,9 @@ export default function RootLayout({
               üweather
             </span>
           </header>
-
-          {children}
+          <div className="frame1 h-full md:frame1-phone">
+            {children}
+          </div>
           </div>
         </div>
       </div>

@@ -33,7 +33,7 @@ export async function getCityById(id: string) {
 
 export async function getCityWeather(latitude: number, longitude: number) {
   const daily = ["temperature_2m_max", "temperature_2m_min", "precipitation_probability_max"];
-  const current = ["temperature_2m", "wind_speed_10m", "wind_direction_10m"];
+  const current = ["temperature_2m", "wind_speed_10m", "wind_direction_10m", "weather_code", "precipitation_probability"];
 
   const params = {
     latitude: latitude,
@@ -58,6 +58,8 @@ export async function getCityWeather(latitude: number, longitude: number) {
       temperature_2m: parseFloat(currentResponse.variables(0)!.value().toFixed(1)),
       wind_speed_10m: parseFloat(currentResponse.variables(1)!.value().toFixed(1)),
       wind_direction_10m: parseFloat(currentResponse.variables(2)!.value().toFixed(0)),
+      weather_code: currentResponse.variables(3)!.value(),
+      precipitation_probability: parseFloat(currentResponse.variables(4)!.value().toFixed(1)),
     },
     daily: {
       time: Array.from(

@@ -55,3 +55,12 @@ body {
 .frame1 {
   background-color: rgba(29, 62, 115, 0.2);
 }
+
+.frame1-phone {
+  background-color: rgba(29, 62, 115, 0.3);
+}
+
+.card-bg {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 1);
+}
