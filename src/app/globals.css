@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #FFFFFF33;
   --foreground: #171717;
 }
 
@@ -10,6 +10,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-bluish-100: oklch(0.7596 0.1027 247.25);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,4 +24,34 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+}
+
+.fondo {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.global-bg {
+  background-color: rgba(22, 20, 56, 0.2);
+}
+
+.frame1 {
+  background-color: rgba(29, 62, 115, 0.2);
 }

@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
+import { Fredoka } from 'next/font/google'
+import Image from "next/image";
+
+const fredoka = Fredoka({
+  subsets: ['latin'],
+  weight: ['400'],
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,12 +31,46 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+  <html lang="en" className="w-full h-full">
+    <body className="w-full h-full overflow-hidden global-bg">
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute inset-0 bg-[url('/cielo.jpg')] bg-cover bg-center bg-no-repeat" />
+        <div className="absolute inset-0 bg-[url('/ruido-colores.jpg')] bg-cover bg-center bg-no-repeat opacity-50" />
+      </div>
+      <div className="min-h-screen flex justify-center">
+        <div
+          className="
+            w-full
+            px-[7px]
+            py-[9px]
+            rounded-[10px]
+            flex
+            flex-col
+          "
+        >
+          <div className="fondo rounded-[10px] flex flex-col h-full border-1 border-white/10">
+          <header className="flex items-center rounded-t-[10px] justify-center bg-white/10 gap-[6px] px-[93px] py-[5px] h-[93px]">
+            <Image
+              src="/Union.svg"
+              alt="üweather logo"
+              width={34.39}
+              height={25.57}
+            />
+            <span
+              className={`text-[27px] font-normal leading-none text-white ${fredoka.className}`}
+            >
+              üweather
+            </span>
+          </header>
+
+          {children}
+          </div>
+        </div>
+      </div>
+
+    </body>
+  </html>
+
+
   );
 }
