@@ -23,7 +23,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter;
 }
 
 .overlay {
@@ -63,4 +63,12 @@ body {
 .card-bg {
   background-color: rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 1);
+}
+
+.error-bg {
+  background-color: rgba(255, 255, 255, 0.08)
+}
+
+.filter-bg {
+  background-color: rgba(255, 255, 255, 0.3)
 }
