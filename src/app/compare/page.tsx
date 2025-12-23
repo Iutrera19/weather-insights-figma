@@ -11,6 +11,7 @@ type City = {
   country: string;
   admin1?: string;
   timezone: string;
+  country_code: string;
 };
 
 type Weather = {

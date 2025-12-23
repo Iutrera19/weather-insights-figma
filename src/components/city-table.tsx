@@ -11,6 +11,7 @@ type City = {
   country: string;
   admin1?: string;
   timezone: string;
+  country_code: string;
 }
 
 export const CityTable = ({ cities, loading, error, onSelectCity, compare}: {cities: City[], loading: boolean, error: string | null, onSelectCity: (city: City) => void, compare: boolean}) => {

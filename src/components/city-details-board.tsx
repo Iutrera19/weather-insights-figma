@@ -1,6 +1,8 @@
 "use client"
 
-import { CityCard } from "./city-card";
+import { useState } from "react"
+import { WeatherOverlay } from "./weather-overlay";
+import { CityDetailsCard } from "./city-details-card";
 
 type City = {
   id: number;
@@ -13,7 +15,7 @@ type City = {
   country_code: string;
 }
 
-export const CityBoard = ({ cities, loading}: {cities: City[], loading: boolean}) => {
+export const CityDetailsBoard = ({cities, loading}: {cities: City[], loading: boolean}) => {
 
   // const [selectedCity, setSelectedCity] = useState<City | null>(null);
 
@@ -28,9 +30,9 @@ export const CityBoard = ({ cities, loading}: {cities: City[], loading: boolean}
     return <p className="text-white">No se encontraron ciudades</p>
   }
   return (
-    <div className="justify-center flex flex-row flex-wrap gap-[16px] max-w-350">
+    <div className="justify-center flex flex-row flex-wrap gap-[16px] max-w-350 max-h-full">
       {cities.map((city) => (
-        <CityCard
+        <CityDetailsCard
           key={city.id}
           city={city}
         />

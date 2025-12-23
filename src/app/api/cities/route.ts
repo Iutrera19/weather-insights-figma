@@ -8,6 +8,7 @@ export type CityApiResponse = {
   country: string;
   admin1?: string;
   timezone: string;
+  country_code: string;
 }
 
 export async function GET(request: NextRequest) {
@@ -40,6 +41,7 @@ export async function GET(request: NextRequest) {
         country: city.country,
         admin1: city.admin1,
         timezone: city.timezone,
+        country_code: city.country_code,
       }));
 
       return Response.json({ cities: apiCitiesSimplified, error: false, reason: null });

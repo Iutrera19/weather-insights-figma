@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const latitude = searchParams.get('latitude');
   const longitude = searchParams.get('longitude');
-  const daily = ["temperature_2m_max", "temperature_2m_min", "precipitation_probability_max"];
+  const daily = ["temperature_2m_max", "temperature_2m_min", "precipitation_probability_max", "weather_code"];
   const current = ["temperature_2m", "wind_speed_10m", "wind_direction_10m", "weather_code", "precipitation_probability"];
 
   const params = {
@@ -44,6 +44,7 @@ export async function GET(request: NextRequest) {
           { length: (Number(dailyResponse.timeEnd()) - Number(dailyResponse.time())) / dailyResponse.interval() },
           (_, i) => new Date((Number(dailyResponse.time()) + i * dailyResponse.interval() + utcOffsetSeconds) * 1000)
         ),
+        weather_code: dailyResponse.variables(3)!.valuesArray(),
         temperature_2m_max: dailyResponse.variables(0)!.valuesArray(),
         temperature_2m_min: dailyResponse.variables(1)!.valuesArray(),
         precipitation_probability_max: dailyResponse.variables(2)!.valuesArray(),

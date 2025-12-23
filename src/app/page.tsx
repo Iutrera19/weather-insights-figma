@@ -5,8 +5,6 @@ import { CitySearch } from "@/components/city-search";
 
 export default function Home() {
   return (
-    <div className="rounded-b-[10px] w-full h-full px-[20px] pt-[54px] pb-[40px]">
-        <CitySearch compare={false}/>
-    </div>
+    <CitySearch compare={false}/>
   );
 }

@@ -11,6 +11,7 @@ type City = {
   longitude: number;
   name: string;
   timezone: string;
+  country_code: string;
 };
 
 type WeatherForecast = {
@@ -91,7 +92,7 @@ export const WeatherOverlay = ({
           className="absolute top-4 right-4 text-gray-600 hover:text-sky-600 font-bold text-xl focus:outline-none"
           aria-label="Cerrar"
         >
-          ×
+          X
         </button>
 
         <h2 className="text-2xl font-semibold text-sky-600 mb-2">

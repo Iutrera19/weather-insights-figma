@@ -8,7 +8,10 @@ export function parseWeatherCode(code: number, rainProbability: number): string 
   }
   if ((51 <= code && code <= 67) || (80 <= code && code <= 82)) {
     return "/lluvioso.jpg";
-  } 
+  }
+  if (code === 2 || code === 3) {
+    return "/nublado.jpg";
+  }
   return "/soleado.jpg";
 }
 
@@ -18,6 +21,8 @@ export function stringifyWeatherCode(code: number, rainProbability: number): str
   }
   if ((51 <= code && code <= 67) || (80 <= code && code <= 82)) {
     return "Lluvioso";
+  } else if (code === 2 || code === 3) {
+    return "Seminublado";
   } else if (95 <= code && code <= 99) {
     return "Tormenta";
   }

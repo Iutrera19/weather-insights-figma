@@ -6,7 +6,7 @@ import Link from "next/link";
 import { parseWeatherCode, parseTemperature, stringifyWeatherCode } from "@/utils/weatherParsing";
 import { TbTemperature } from "react-icons/tb";
 import { AiOutlineThunderbolt } from "react-icons/ai";
-import { BsCloudRain } from "react-icons/bs";
+import { BsCloudRain, BsCloudSun } from "react-icons/bs";
 import { BsSun } from "react-icons/bs";
 import { Inter } from "next/font/google";
 
@@ -23,6 +23,7 @@ type City = {
   country: string;
   admin1?: string;
   timezone: string;
+  country_code: string;
 }
 
 type WeatherForecast = {
@@ -101,13 +102,13 @@ return (
 
     <div className="relative z-10 flex flex-col p-[16px] gap-[24px]">
       <div className="flex flex-row">
-        <div className="w-[80px] h-[60px] flex justify-start">
-          <Image src="/CL.svg" alt="help icon" width={60} height={60} />
+        <div className="min-w-[80px] h-[60px] flex justify-start">
+            <Image src={`https://flagcdn.com/${city.country_code.toLowerCase()}.svg`} alt="country flag" width={60} height={60} 
+              className="rounded-full"/>
         </div>
 
         <div className="flex flex-col gap-[9px] h-[80px]">
-          <h1 className={`font-semibold text-lg ${inter.className}`}>{city.name} - {city.country}</h1>
-
+          <h1 className={`font-semibold text-lg ${inter.className}`}>{city.name}</h1>
           <div className="flex flex-row items-center gap-[4px]">
             <TbTemperature
               style={{
@@ -131,6 +132,10 @@ return (
 
             {weatherLabel === "Lluvioso" && (
               <BsCloudRain className="text-blue-400" />
+            )}
+
+            {weatherLabel === "Seminublado" && (
+              <BsCloudSun className="text-blue-400" />
             )}
 
             {weatherLabel === "Tormenta" && (

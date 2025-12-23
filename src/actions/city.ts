@@ -10,6 +10,7 @@ export type CityApiResponse = {
   country: string;
   admin1?: string;
   timezone: string;
+  country_code: string;
 }
 
 export async function getCityById(id: string) {

@@ -53,7 +53,7 @@ export default function RootLayout({
               üweather
             </span>
           </header>
-          <div className="frame1 h-full md:frame1-phone">
+          <div className="gap-[38px] frame1 h-max-full flex flex-col items-center md:frame1-phone rounded-b-[10px] w-full h-full px-[20px] pt-[54px] pb-[40px]">
             {children}
           </div>
           </div>
