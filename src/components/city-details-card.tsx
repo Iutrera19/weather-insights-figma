@@ -86,7 +86,7 @@
     }
 
     return (
-        <div className={`relative w-[304px] rounded-[10px] border border-white/5 card-bg p-[16px] ${inter.className}`}>
+        <div className={`flex flex-grow basis-1/5    max-w-full relative rounded-[10px] border border-white/5 card-bg p-[16px] ${inter.className}`}>
         
         {/* BACKGROUND */}
         <div
