@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import { ScrollShadow } from "@heroui/react";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -8,7 +9,10 @@ const inter = Inter({
 export const FilterSelector = ({filter, onFilterChange}: {filter: string, onFilterChange: (filter: string) => void}) => {
   const optionsArray = ["Todos", "Soleado", "Seminublado", "Lluvioso", "Tormenta"];
   return (
-    <div className="flex flex-row h-[40px] border-1 border-white/20 gap-[20px] py-[2px] pl-[2px] pr-[16px] rounded-[5px] overflow-x-auto justify-center items-center">
+    <ScrollShadow size={300} orientation="horizontal" hideScrollBar className="flex h-[40px] items-center gap-[20px]
+                 rounded-[5px] py-[2px] pl-[2px] pr-[16px]
+                 md:border md:border-white/20 no-scrollbar">
+    {/* <div className="flex flex-row h-[40px] md:border-1 md:border-white/20 gap-[20px] py-[2px] pl-[2px] pr-[16px] rounded-[5px] overflow-x-auto justify-start items-center no-scrollbar"> */}
         {optionsArray.map((item) => (
         <div
           key={item}
@@ -20,6 +24,7 @@ export const FilterSelector = ({filter, onFilterChange}: {filter: string, onFilt
           </p>
         </div>
       ))}
-    </div>
+    {/* </div> */}
+    </ScrollShadow>
   )
 }
