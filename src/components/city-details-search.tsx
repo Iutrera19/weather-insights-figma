@@ -153,8 +153,8 @@ export const CityDetailsSearch = () => {
 
     return (
         <>
-            <div className="flex flex-col gap-4 w-full md:flex-row md:justify-between md:gap-[38px]">
-                <div className="flex flex-row gap-[24px] flex-wrap">
+            <div className="flex flex-col gap-4 w-max-full md:w-full md:flex-row md:justify-between md:gap-[38px] flex-wrap items-center">
+                <div className="flex flex-col gap-[24px] md:flex-row flex-wrap items-center">
                     <div className="flex flex-row gap-[8px] items-center">
                         {/* <Image src={`https://flagcdn.com/${countryCode.toLowerCase()}.svg`} alt="help icon" width={24} height={24} className="rounded-full"/> */}
                         <Image src={`/CL.svg`} alt="help icon" width={24} height={24} className="rounded-full" />
@@ -162,7 +162,7 @@ export const CityDetailsSearch = () => {
                     </div>
                     <FilterSelector filter={filter} onFilterChange={setFilter} />
                 </div>
-                <div className="flex flex-row max-w-[346px] h-[40px] gap-[9px]">
+                <div className="flex flex-row md:w-[346px] h-[40px] gap-[9px]">
                     <div className="flex flex-row text-white w-[315px] border-1 border-bluish-100 rounded-[5px] gap-[8px] pl-[10px] max-w-full">
                         <button onClick={() => handleSearch(cityName)}
                             disabled={loading}

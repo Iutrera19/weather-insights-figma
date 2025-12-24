@@ -136,7 +136,7 @@
                     {!loading && weatherLabel === "Seminublado" && <BsCloudSun className="text-blue-400" />}
 
                     <p className="text-sm">
-                        {(weatherLabel && !forecast?.error) ? weatherLabel : (forecast?.error) ? "Error" : "Cargando..."}
+                        {(weatherLabel && !forecast?.error) ? weatherLabel : (forecast?.error && !loading) ? "No Disponible" : "Cargando..."}
                     </p>
                     </div>
 
@@ -162,12 +162,6 @@
                 </div>
                 ))}
             </div>
-
-            {error && (
-            <p className="text-red-400 text-xs text-center mt-2">
-                {error}
-            </p>
-            )}
         </div>
         </div>
     );

@@ -119,7 +119,7 @@ return (
             <p className={`${inter.className} text-sm`}>
               {forecast
                 ? `${forecast.current.temperature_2m}°`
-                : "Cargando..."}
+                : loading ? "Cargando..." : "No disponible"}
             </p>
           </div>
 
@@ -141,7 +141,7 @@ return (
               <AiOutlineThunderbolt className="text-purple-400" />
             )}
             <p className={`${inter.className} text-sm`}>
-              {weatherLabel ?? "Cargando..."}
+              {weatherLabel ? weatherLabel : loading ? "Cargando..." : "No disponible"}
             </p>
           </div>
         </div>
