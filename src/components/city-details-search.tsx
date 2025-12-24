@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import { CityBoard } from "./city-board";
 import Image from "next/image";
 import { Search } from "lucide-react";
 import { FilterSelector } from "./filter-selector";
@@ -110,7 +109,6 @@ export const CityDetailsSearch = () => {
           <div className="flex flex-col gap-[6px] justify-center items-center">
             <p className={`text-white ${inter.className} text-sm font-medium`}>Las nubes no nos dejan ver el clima de este país en este momento</p>
             <p className={`text-white ${inter.className} text-sm font-light`}>Vuelve a conectarte a internet y lo intentaremos nuevamente</p>
-            {error}
           </div>
         </div>
       </>

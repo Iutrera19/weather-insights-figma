@@ -1,7 +1,5 @@
 "use client"
 
-import { useState } from "react"
-import { WeatherOverlay } from "./weather-overlay";
 import { CityDetailsCard } from "./city-details-card";
 
 type City = {

@@ -40,14 +40,13 @@ type WeatherForecast = {
     temperature_2m_min: number[];
     precipitation_probability_max: number[];
   };
+  error?: boolean;
 };
 
 export const CityCard = ({ city }: { city: City }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [forecast, setForecast] = useState<WeatherForecast | null>(null);
-  const [weather, setWeather] = useState<string | null>(null);
-  const [temperatureRange, setTemperatureRange] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -67,7 +66,7 @@ export const CityCard = ({ city }: { city: City }) => {
 
         const data: WeatherForecast = await res.json();
 
-        if (!data.current || !data.daily) {
+        if (!data.current || !data.daily || data.error) {
           throw new Error("Invalid weather data");
         }
 
@@ -95,7 +94,7 @@ return (
       className="absolute inset-0 bg-cover bg-center opacity-20"
       style={{
         backgroundImage: `url(${parseWeatherCode(
-          forecast ? forecast.current.weather_code : 0, forecast ? forecast.current.precipitation_probability : 0
+          (forecast && !forecast.error) ? forecast.current.weather_code : 0, (forecast && !forecast.error) ? forecast.current.precipitation_probability : 0
         )})`,
       }}
     />
@@ -113,7 +112,7 @@ return (
             <TbTemperature
               style={{
                 color: parseTemperature(
-                  forecast ? forecast.current.temperature_2m : 15
+                  (forecast && !forecast.error) ? forecast.current.temperature_2m : 15
                 ),
               }}
             />
