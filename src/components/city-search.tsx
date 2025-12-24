@@ -18,13 +18,7 @@ type City = {
     country_code: string;
 }
 
-export const CitySearch = ({
-    onSelectCity = () => { },
-    compare,
-}: {
-    onSelectCity?: (city: City) => void;
-    compare: boolean;
-}) => {
+export const CitySearch = () => {
     const [cityName, setCityName] = useState("");
     const [cities, setCities] = useState<City[]>([]);
     const [loading, setLoading] = useState(false);

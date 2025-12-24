@@ -14,7 +14,7 @@ type City = {
   country_code: string;
 }
 
-export const CityTable = ({ cities, loading, error, onSelectCity, compare}: {cities: City[], loading: boolean, error: string | null, onSelectCity: (city: City) => void, compare: boolean}) => {
+export const CityTable = ({ cities, loading, onSelectCity, compare}: {cities: City[], loading: boolean, onSelectCity: (city: City) => void, compare: boolean}) => {
 
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
 
@@ -43,7 +43,11 @@ export const CityTable = ({ cities, loading, error, onSelectCity, compare}: {cit
             <tr
               key={`${city.name} ${city.latitude} ${city.longitude}`}
               onClick={() => {
-                compare ? onSelectCity(city) : setSelectedCity(city);
+                if (compare) {
+                  onSelectCity(city);
+                } else {
+                  setSelectedCity(city);
+                }
               }}
               style={{ cursor: "pointer" }}
               className="border-t border-gray-200 hover:bg-blue-100 transition-colors"

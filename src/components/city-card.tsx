@@ -71,7 +71,7 @@ export const CityCard = ({ city }: { city: City }) => {
         }
 
         setForecast(data);
-      } catch (err) {
+      } catch {
         setError("Error al cargar el pronóstico");
         setForecast(null);
       } finally {
