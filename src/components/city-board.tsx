@@ -19,8 +19,8 @@ export const CityBoard = ({ cities, loading}: {cities: City[], loading: boolean}
 
   if (loading) {
     return (<>
-      <p className="text-2xl font-semibold text-blue-400 mb-2">Cargando...</p>
-      <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+      <p className="text-2xl font-semibold text-white mb-2">Cargando...</p>
+      <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white"></div>
       </>
     );
   }
