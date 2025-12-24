@@ -63,7 +63,7 @@ export const CitySearch = () => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-start h-full gap-[38px]">
+        <div className="flex flex-col items-center justify-start gap-[38px] w-full">
             <div className="flex flex-row max-w-[346px] h-[40px] gap-[9px]">
                 <div className="flex flex-row text-white w-[315px] border-1 border-bluish-100 rounded-[5px] gap-[8px] pl-[10px] max-w-full">
                     <button

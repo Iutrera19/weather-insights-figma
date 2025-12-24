@@ -87,11 +87,10 @@ export const CityCard = ({ city }: { city: City }) => {
     : null;
 
 return (
-  <div className="relative w-[290px] rounded-[10px] overflow-hidden border border-white/5 card-bg gap-[24px]">
-    
+  <div className="relative max-w-full min-w-[290px] flex-1 flex flex-col flex-grow basis-1/5 rounded-[10px] overflow-hidden border border-white/5 card-bg gap-[24px]">
     {/* BACKGROUND IMAGE */}
     <div
-      className="absolute inset-0 bg-cover bg-center opacity-20"
+      className="absolute inset-0 bg-cover bg-center opacity-20 rounded-[10px]"
       style={{
         backgroundImage: `url(${parseWeatherCode(
           (forecast && !forecast.error) ? forecast.current.weather_code : 0, (forecast && !forecast.error) ? forecast.current.precipitation_probability : 0
@@ -99,15 +98,15 @@ return (
       }}
     />
 
-    <div className="relative z-10 flex flex-col p-[16px] gap-[24px]">
-      <div className="flex flex-row">
+    <div className="relative z-10 flex flex-col p-[16px] gap-[24px] w-full h-full justify-center">
+      <div className="flex flex-row h-full">
         <div className="min-w-[80px] h-[60px] flex justify-start">
             <Image src={`https://flagcdn.com/${city.country_code.toLowerCase()}.svg`} alt="country flag" width={60} height={60} 
               className="rounded-full"/>
         </div>
 
-        <div className="flex flex-col gap-[9px] h-[80px]">
-          <h1 className={`font-semibold text-lg ${inter.className}`}>{city.name}</h1>
+        <div className="flex flex-col gap-[9px] h-full w-full justify-start">
+          <h1 className={`font-semibold text-lg ${inter.className}`}>{city.name} - {city.country}</h1>
           <div className="flex flex-row items-center gap-[4px]">
             <TbTemperature
               style={{

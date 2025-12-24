@@ -71,10 +71,6 @@ export const CityDetailsSearch = () => {
         }
     }
 
-    useEffect(() => {
-        // filterResults(cities, filter);
-    }, [filter]);
-
     if (error) {
         return (
             <>
@@ -187,6 +183,7 @@ export const CityDetailsSearch = () => {
             <CityDetailsBoard
                 cities={cities}
                 loading={loading}
+                filter={filter}
             />
         </>
     );

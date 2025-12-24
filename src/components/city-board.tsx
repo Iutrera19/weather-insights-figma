@@ -28,7 +28,7 @@ export const CityBoard = ({ cities, loading}: {cities: City[], loading: boolean}
     return <p className="text-white">No se encontraron ciudades</p>
   }
   return (
-    <div className="justify-center flex flex-row flex-wrap gap-[16px] max-w-350">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-[16px] w-full md:px-[20px]">
       {cities.map((city) => (
         <CityCard
           key={city.id}

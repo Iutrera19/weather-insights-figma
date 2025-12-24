@@ -42,7 +42,7 @@
     error?: boolean;
     };
 
-    export const CityDetailsCard = ({ city }: { city: City }) => {
+    export const CityDetailsCard = ({ city, filter }: { city: City, filter: string }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [forecast, setForecast] = useState<WeatherForecast | null>(null);
@@ -85,8 +85,16 @@
             : null;
     }
 
+    if (filter !== "Todos" && weatherLabel && weatherLabel !== filter) {
+        return null;
+    }
+
+    if (!weatherLabel && forecast?.error && filter !== "Todos") {
+        return null;
+    }
+
     return (
-        <div className={`flex flex-grow basis-1/5    max-w-full relative rounded-[10px] border border-white/5 card-bg p-[16px] ${inter.className}`}>
+        <div className={`flex flex-grow basis-1/5 min-w-[250px] relative rounded-[10px] border border-white/5 card-bg p-[16px] ${inter.className}`}>
         
         {/* BACKGROUND */}
         <div
@@ -99,7 +107,7 @@
             }}
         />
 
-        <div className="relative z-10 flex flex-col gap-[9px] w-full h-full">
+        <div className="relative z-10 flex flex-col gap-[9px] w-full h-full justify-start">
             
             {/* HEADER */}
             <div className="flex flex-col justify-center items-center gap-[3px] h-[43px]">

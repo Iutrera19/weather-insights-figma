@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${cityName}&count=12&language=es&format=json`);
+    const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${cityName}&count=5&language=es&format=json`);
 
     const jsonData = await response.json();
 

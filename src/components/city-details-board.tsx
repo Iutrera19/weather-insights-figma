@@ -13,7 +13,7 @@ type City = {
   country_code: string;
 }
 
-export const CityDetailsBoard = ({cities, loading}: {cities: City[], loading: boolean}) => {
+export const CityDetailsBoard = ({cities, loading, filter}: {cities: City[], loading: boolean, filter: string}) => {
 
   // const [selectedCity, setSelectedCity] = useState<City | null>(null);
 
@@ -28,11 +28,13 @@ export const CityDetailsBoard = ({cities, loading}: {cities: City[], loading: bo
     return <p className="text-white">No se encontraron ciudades</p>
   }
   return (
-    <div className="justify-center flex flex-row flex-wrap gap-[16px] md:px-[20px] max-h-full max-h-full">
+    // <div className="justify-start flex flex-row flex-wrap gap-[16px] md:px-[20px] max-h-full w-full">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-[16px] w-full md:px-[20px]">
       {cities.map((city) => (
         <CityDetailsCard
           key={city.id}
           city={city}
+          filter={filter}
         />
       ))}
     </div>
