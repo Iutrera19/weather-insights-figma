@@ -5,6 +5,6 @@ import { CitySearch } from "@/components/city-search";
 
 export default function Home() {
   return (
-    <CitySearch compare={false}/>
+    <CitySearch />
   );
 }

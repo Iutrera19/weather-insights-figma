@@ -83,12 +83,12 @@ export default function ComparePage() {
 
       <div className="flex flex-row items-start space-x-6">
         <div className="flex flex-col items-center">
-          <CitySearch onSelectCity={setCity1} compare={true} />
+          <CitySearch />
           {city1 && <h2 className="text-xl font-semibold mt-4 text-blue-500">{`${city1.name} - ${city1.country}`}</h2>}
           {error1 && <p className="text-red-500 mt-2">{error1}</p>}
         </div>
         <div className="flex flex-col items-center">
-          <CitySearch onSelectCity={setCity2} compare={true} />
+          <CitySearch />
           {city2 && <h2 className="text-xl font-semibold mt-4 text-blue-500">{`${city2.name} - ${city2.country}`}</h2>}
           {error2 && <p className="text-red-500 mt-2">{error2}</p>}
         </div>
