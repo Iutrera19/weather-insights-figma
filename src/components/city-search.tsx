@@ -4,6 +4,7 @@ import { useState } from "react";
 import { CityBoard } from "./city-board";
 import Image from "next/image";
 import { Search } from "lucide-react";
+import Link from "next/link";
 
 type City = {
     id: number;
@@ -64,14 +65,15 @@ export const CitySearch = () => {
 
     return (
         <div className="flex flex-col items-center justify-start gap-[38px] w-full">
-            <div className="flex flex-row max-w-[346px] h-[40px] gap-[9px]">
-                <div className="flex flex-row text-white w-[315px] border-1 border-bluish-100 rounded-[5px] gap-[8px] pl-[10px] max-w-full">
+            <div className="flex flex-row max-w-[346px] h-[40px] gap-[9px] items-center">
+                <div className="flex flex-row text-white w-[315px] border-1 border-bluish-100 rounded-[5px] gap-[8px] pl-[10px] max-w-full h-full">
                     <button
                         onClick={() => handleSearch(cityName)}
                         disabled={loading}
                     >
                         {/* {loading ? "Buscando..." : "Buscar"} */}
-                        <Search size={18} color="var(--color-bluish-100)" />
+                          <Search size={18} color="var(--color-bluish-100)" />
+
                     </button>
                     <input
                         placeholder="Buscar..."
@@ -80,7 +82,9 @@ export const CitySearch = () => {
                         className="placeholder:text-white/85 max-w-full"
                     />
                 </div>
-                <Image src="/help-circle.svg" alt="help icon" width={24} height={24} />
+                <Link href="/cities">
+                  <Image src="/help-circle.svg" alt="help icon" width={24} height={24} />
+                </Link>
             </div>
 
             {error && (
