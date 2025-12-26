@@ -32,7 +32,7 @@ export default function RootLayout({
           className="w-full px-[7px] py-[9px] rounded-[10px] flex flex-col">
           <div className="fondo rounded-[10px] flex flex-col h-full border-1 border-white/20">
           <header className="flex items-center rounded-t-[10px] justify-center gap-[6px] px-[93px] py-[5px] h-[93px]">
-            <Link href="/" className="flex flex items-center justify-center gap-[6px] px-[93px] py-[5px] h-[93px]">
+            <Link href="/" className="flex items-center justify-center gap-[6px] px-[93px] py-[5px] h-[93px]">
               <Image
                 src="/uw_logo.svg"
                 alt="üweather logo"
