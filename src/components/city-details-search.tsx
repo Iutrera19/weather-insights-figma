@@ -71,6 +71,11 @@ export const CityDetailsSearch = () => {
         }
     }
 
+    async function formSubmit(e: React.FormEvent) {
+      e.preventDefault();
+      await handleSearch(cityName);
+    }
+
     if (error) {
         return (
             <>
@@ -84,12 +89,14 @@ export const CityDetailsSearch = () => {
                     <FilterSelector filter={filter} onFilterChange={setFilter} />
                 </div>
                 <div className="flex flex-row max-w-full h-[40px] gap-[9px] justify-center">
-                    <div className="flex flex-row text-white w-[315px] border-1 border-bluish-100 rounded-[5px] gap-[8px] pl-[10px] max-w-full">
-                        <button onClick={() => handleSearch(cityName)}
+                      <form onSubmit={formSubmit} className="flex flex-row text-white w-[315px] border-1 border-bluish-100 rounded-[5px] gap-[8px] pl-[10px] max-w-full h-full">
+                        <button
+                            type="submit"
                             disabled={loading}
                         >
                             {/* {loading ? "Buscando..." : "Buscar"} */}
-                            <Search size={18} color="var(--color-bluish-100)" />
+                                <Search size={18} color="var(--color-bluish-100)" />
+
                         </button>
                         <input
                             placeholder="Buscar..."
@@ -97,7 +104,7 @@ export const CityDetailsSearch = () => {
                             onChange={(e) => setCityName(e.target.value)}
                             className="placeholder:text-white/85 max-w-full"
                         />
-                    </div>
+                      </form>
                     </div>
                 </div>
 
@@ -126,12 +133,14 @@ export const CityDetailsSearch = () => {
                     <FilterSelector filter={filter} onFilterChange={setFilter} />
                 </div>
                 <div className="flex flex-row max-w-full h-[40px] gap-[9px] justify-center">
-                    <div className="flex flex-row text-white w-[315px] border-1 border-bluish-100 rounded-[5px] gap-[8px] pl-[10px] max-w-full">
-                        <button onClick={() => handleSearch(cityName)}
+                    <form onSubmit={formSubmit} className="flex flex-row text-white w-[315px] border-1 border-bluish-100 rounded-[5px] gap-[8px] pl-[10px] max-w-full h-full">
+                        <button
+                            type="submit"
                             disabled={loading}
                         >
                             {/* {loading ? "Buscando..." : "Buscar"} */}
-                            <Search size={18} color="var(--color-bluish-100)" />
+                                <Search size={18} color="var(--color-bluish-100)" />
+
                         </button>
                         <input
                             placeholder="Buscar..."
@@ -139,7 +148,7 @@ export const CityDetailsSearch = () => {
                             onChange={(e) => setCityName(e.target.value)}
                             className="placeholder:text-white/85 max-w-full"
                         />
-                    </div>
+                    </form>
                     </div>
                 </div>
 
@@ -163,12 +172,14 @@ export const CityDetailsSearch = () => {
                     <FilterSelector filter={filter} onFilterChange={setFilter} />
                 </div>
                 <div className="flex flex-row max-w-full h-[40px] gap-[9px] justify-center">
-                    <div className="flex flex-row text-white w-[315px] border-1 border-bluish-100 rounded-[5px] gap-[8px] pl-[10px] max-w-full">
-                        <button onClick={() => handleSearch(cityName)}
+                    <form onSubmit={formSubmit} className="flex flex-row text-white w-[315px] border-1 border-bluish-100 rounded-[5px] gap-[8px] pl-[10px] max-w-full h-full">
+                        <button
+                            type="submit"
                             disabled={loading}
                         >
                             {/* {loading ? "Buscando..." : "Buscar"} */}
-                            <Search size={18} color="var(--color-bluish-100)" />
+                                <Search size={18} color="var(--color-bluish-100)" />
+
                         </button>
                         <input
                             placeholder="Buscar..."
@@ -176,7 +187,7 @@ export const CityDetailsSearch = () => {
                             onChange={(e) => setCityName(e.target.value)}
                             className="placeholder:text-white/85 max-w-full"
                         />
-                    </div>
+                    </form>
                 </div>
             </div>
 

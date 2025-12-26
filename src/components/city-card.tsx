@@ -106,7 +106,7 @@ return (
         </div>
 
         <div className="flex flex-col gap-[9px] h-full w-full justify-start">
-          <h1 className={`font-semibold text-lg ${inter.className}`}>{city.name} - {city.country}</h1>
+          <h1 className={`font-semibold text-lg ${inter.className}`}>{city.name}</h1>
           <div className="flex flex-row items-center gap-[4px]">
             <TbTemperature
               style={{
