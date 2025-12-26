@@ -141,7 +141,7 @@
                     {!loading && weatherLabel === "Soleado" && <BsSun className="text-yellow-400" />}
                     {!loading && weatherLabel === "Lluvioso" && <BsCloudRain className="text-blue-400" />}
                     {!loading && weatherLabel === "Tormenta" && <AiOutlineThunderbolt className="text-purple-400" />}
-                    {!loading && weatherLabel === "Seminublado" && <BsCloudSun className="text-blue-400" />}
+                    {!loading && weatherLabel === "Seminublado" && <BsCloudSun className="text-white-400" />}
 
                     <p className="text-sm">
                         {(weatherLabel && !forecast?.error) ? weatherLabel : (forecast?.error && !loading) ? "No Disponible" : "Cargando..."}

@@ -133,7 +133,7 @@ return (
             )}
 
             {weatherLabel === "Seminublado" && (
-              <BsCloudSun className="text-blue-400" />
+              <BsCloudSun className="text-white-400" />
             )}
 
             {weatherLabel === "Tormenta" && (
