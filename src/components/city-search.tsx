@@ -87,8 +87,10 @@ export const CitySearch = () => {
                     className="placeholder:text-white/85 max-w-full"
                 />
                 </form>
-                <Link href="/cities">
-                  <Image src="/help-circle.svg" alt="help icon" width={24} height={24} />
+                <Link href="/cities" className="cursor-default">
+                  <span title="Escribe el nombre de la ciudad y revisa su clima">
+                    <Image src="/help-circle.svg" alt="help icon" width={24} height={24} />
+                  </span>
                 </Link>
             </div>
 
