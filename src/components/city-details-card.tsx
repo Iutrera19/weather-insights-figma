@@ -75,6 +75,7 @@
     }, [city]);
 
     let weatherLabel: string | null = null;
+    let dailyWeatherCodes: string[] = [];
 
     if (!forecast?.error){
         weatherLabel = forecast
@@ -83,6 +84,12 @@
                 forecast.current.precipitation_probability
             )
             : null;
+        dailyWeatherCodes = forecast ? forecast.daily.weather_code.map((code, index) =>
+            stringifyWeatherCode(
+            code,
+            forecast.daily.precipitation_probability_max[index]
+            )
+        ) : Array(5).fill(undefined);
     }
 
     if (filter !== "Todos" && weatherLabel && weatherLabel !== filter) {
@@ -138,13 +145,13 @@
 
                     {/* CLIMA */}
                     <div className="flex flex-row flex-grow justify-end items-center gap-[4px] w-[70px]">
-                    {!loading && weatherLabel === "Soleado" && <BsSun className="text-yellow-400" />}
-                    {!loading && weatherLabel === "Lluvioso" && <BsCloudRain className="text-blue-400" />}
-                    {!loading && weatherLabel === "Tormenta" && <AiOutlineThunderbolt className="text-purple-400" />}
-                    {!loading && weatherLabel === "Seminublado" && <BsCloudSun className="text-white-400" />}
+                    {!loading && dailyWeatherCodes[index] === "Soleado" && <BsSun className="text-yellow-400" />}
+                    {!loading && dailyWeatherCodes[index] === "Lluvioso" && <BsCloudRain className="text-blue-400" />}
+                    {!loading && dailyWeatherCodes[index] === "Tormenta" && <AiOutlineThunderbolt className="text-purple-400" />}
+                    {!loading && dailyWeatherCodes[index] === "Seminublado" && <BsCloudSun className="text-white-400" />}
 
                     <p className="text-sm">
-                        {(weatherLabel && !forecast?.error) ? weatherLabel : (forecast?.error && !loading) ? "No Disponible" : "Cargando..."}
+                        {(dailyWeatherCodes[index] && !forecast?.error) ? dailyWeatherCodes[index] : (forecast?.error && !loading) ? "No Disponible" : "Cargando..."}
                     </p>
                     </div>
 

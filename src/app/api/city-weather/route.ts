@@ -31,25 +31,31 @@ export async function GET(request: NextRequest) {
 
 
     const weatherData = {
-      current: {
+    current: {
         time: new Date((Number(currentResponse.time()) + utcOffsetSeconds) * 1000),
-        temperature_2m: currentResponse.variables(0)!.value().toFixed(1),
+        temperature_2m: Number(currentResponse.variables(0)!.value()),
         wind_speed_10m: currentResponse.variables(1)!.value(),
         wind_direction_10m: currentResponse.variables(2)!.value(),
         weather_code: currentResponse.variables(3)!.value(),
         precipitation_probability: currentResponse.variables(4)!.value(),
-      },
-      daily: {
+    },
+    daily: {
         time: Array.from(
-          { length: (Number(dailyResponse.timeEnd()) - Number(dailyResponse.time())) / dailyResponse.interval() },
-          (_, i) => new Date((Number(dailyResponse.time()) + i * dailyResponse.interval() + utcOffsetSeconds) * 1000)
+        { length: (Number(dailyResponse.timeEnd()) - Number(dailyResponse.time())) / dailyResponse.interval() },
+        (_, i) =>
+            new Date(
+            (Number(dailyResponse.time()) + i * dailyResponse.interval() + utcOffsetSeconds) * 1000
+            ).toISOString()
         ),
-        weather_code: dailyResponse.variables(3)!.valuesArray(),
-        temperature_2m_max: dailyResponse.variables(0)!.valuesArray(),
-        temperature_2m_min: dailyResponse.variables(1)!.valuesArray(),
-        precipitation_probability_max: dailyResponse.variables(2)!.valuesArray(),
-      },
+
+        weather_code: Array.from(dailyResponse.variables(3)?.valuesArray() ?? []),
+        temperature_2m_max: Array.from(dailyResponse.variables(0)?.valuesArray() ?? []),
+        temperature_2m_min: Array.from(dailyResponse.variables(1)?.valuesArray() ?? []),
+        precipitation_probability_max: Array.from(dailyResponse.variables(2)?.valuesArray() ?? []),
+    },
     };
+
+
 
     return Response.json(weatherData);
   } catch (error) {
