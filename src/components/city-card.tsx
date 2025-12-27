@@ -117,7 +117,7 @@ return (
             />
             <p className={`${inter.className} text-sm`}>
               {forecast
-                ? `${forecast.current.temperature_2m}°`
+                ? `${forecast.current.temperature_2m.toFixed(1)}°`
                 : loading ? "Cargando..." : "No Disponible"}
             </p>
           </div>
