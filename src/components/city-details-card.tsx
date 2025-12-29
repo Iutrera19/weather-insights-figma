@@ -1,5 +1,6 @@
 "use client"
 
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { parseWeatherCode, parseTemperature, stringifyWeatherCode } from "@/utils/weatherParsing";
 import { TbTemperature } from "react-icons/tb";
@@ -53,23 +54,12 @@ useEffect(() => {
     setError(null);
 
     try {
+        const res = await axios.post('http://localhost:3001/cities/weather', {
+            latitude: city.latitude,
+            longitude: city.longitude,
+        });
 
-        const res = await fetch(
-          `http://localhost:3001/cities/weather`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              latitude: city.latitude,
-              longitude: city.longitude,
-            }),
-          }
-        )
-
-        if (!res.ok) throw new Error("Weather API error");
-
-        const data: WeatherForecast = (await res.json()).weather;
+        const data: WeatherForecast = res.data.weather;
         setForecast(data);
     } catch {
         setError("Error al cargar el pronóstico");

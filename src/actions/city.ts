@@ -1,6 +1,7 @@
 "use server";
 
 import { fetchWeatherApi } from "openmeteo";
+import axios from "axios";
 
 export type CityApiResponse = {
   id: number;
@@ -19,8 +20,10 @@ export async function getCityById(id: string) {
   }
 
   try {
-    const res = await fetch(`https://geocoding-api.open-meteo.com/v1/get?id=${id}`);
-    const data = await res.json();
+    const res = await axios.get(`https://geocoding-api.open-meteo.com/v1/get`, {
+      params: { id: id }
+    });
+    const data = res.data;
 
     if (data.error) {
       throw new Error("Error obteniendo información de las ciudades");

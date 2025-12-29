@@ -1,5 +1,6 @@
 "use client"
 
+import axios from "axios";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -50,17 +51,12 @@ export const CountryCard = ({ country }: { country: Country }) => {
       setError(null);
 
       try {
-        const res = await fetch(
-          `/api/city-weather?latitude=${country.lat.toFixed(
-            2
-          )}&longitude=${country.long.toFixed(2)}`
-        );
+        const res = await axios.post('http://localhost:3001/cities/weather', {
+          latitude: country.lat,
+          longitude: country.long,
+        });
 
-        if (!res.ok) {
-          throw new Error("Weather API error");
-        }
-
-        const data: WeatherForecast = await res.json();
+        const data: WeatherForecast = res.data.weather;
 
         if (!data.current || !data.daily || data.error) {
           throw new Error("Invalid weather data");

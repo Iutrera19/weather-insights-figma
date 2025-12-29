@@ -1,5 +1,6 @@
 "use client"
 
+import axios from "axios";
 import { useState } from "react";
 import Image from "next/image";
 import { Search } from "lucide-react";
@@ -79,13 +80,14 @@ export const CityDetailsSearch = ({ countryCode, countryName }: { countryCode: s
         setLoading(true);
 
         try {
-            const res = await fetch(`http://localhost:3001/cities/find?cityName=${encodeURIComponent(city)}&countryCode=${encodeURIComponent(country_code)}`);
+            const res = await axios.get('http://localhost:3001/cities/find', {
+                params: {
+                    cityName: city,
+                    countryCode: country_code,
+                }
+            });
 
-            if (!res.ok) {
-                throw new Error("Error al buscar ciudades");
-            }
-
-            const response = await res.json();
+            const response = res.data;
 
             if (response.error) {
                 setError(response.reason);

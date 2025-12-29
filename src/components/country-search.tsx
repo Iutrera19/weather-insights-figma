@@ -1,5 +1,6 @@
 "use client"
 
+import axios from "axios";
 import { useState } from "react";
 import { CountryBoard } from "./country-board";
 import Image from "next/image";
@@ -31,13 +32,13 @@ export const CountrySearch = () => {
     setLoading(true);
 
     try {
-      const res = await fetch(`http://localhost:3001/countries/find?name=${encodeURIComponent(value)}`);
+      const res = await axios.get('http://localhost:3001/countries/find', {
+        params: {
+          name: value,
+        }
+      });
 
-      if (!res.ok) {
-          throw new Error("Error al buscar países");
-      }
-
-      const response = await res.json();
+      const response = res.data;
 
       if (response.error) {
           setError("Error de búsqueda de países");
