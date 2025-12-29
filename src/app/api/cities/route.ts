@@ -14,13 +14,14 @@ export type CityApiResponse = {
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const cityName = searchParams.get('cityName');
+  const countryCode = searchParams.get('countryCode');
 
   if (!cityName) {
     return Response.json({ error: true, reason: "Missing cityName parameter", cities: [] });
   }
 
   try {
-    const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${cityName}&count=5&language=es&format=json`);
+    const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cityName)}&count=10&language=es&format=json${countryCode ? `&countryCode=${encodeURIComponent(countryCode)}` : ''}`);
 
     const jsonData = await response.json();
 

@@ -1,8 +1,5 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import { CitySearchBar } from "@/components/city-search-bar";
-import { FilterSelector } from "@/components/filter-selector";
-import { CityDetailsBoard } from "@/components/city-details-board";
 import { CityDetailsSearch } from "@/components/city-details-search";
 
 const inter = Inter({
@@ -17,6 +14,6 @@ export default async function CountryCitiesPage({
 }) {
   const { countryName, countryCode } = await searchParams;
   return (
-    <CityDetailsSearch />
+    <CityDetailsSearch countryCode={countryCode} countryName={countryName} />
   );
 }

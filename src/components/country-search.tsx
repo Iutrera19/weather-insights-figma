@@ -1,63 +1,56 @@
 "use client"
 
-import { useState } from "react";
-import { CityBoard } from "./city-board";
+import { useState, useEffect } from "react";
+import { CountryBoard } from "./country-board";
 import Image from "next/image";
 import { Search } from "lucide-react";
-import Link from "next/link";
 
-type City = {
-    id: number;
-    name: string;
-    latitude: number;
-    longitude: number;
-    country: string;
-    admin1?: string;
-    error?: boolean;
-    reason?: string;
-    timezone: string;
-    country_code: string;
+type Country = {
+  iso2: string;
+  name: string;
+  long: number;
+  lat: number;
 }
 
-export const CitySearch = () => {
-    const [cityName, setCityName] = useState("");
-    const [cities, setCities] = useState<City[]>([]);
+export const CountrySearch = () => {
+    const [countryName, setCountryName] = useState("");
+    const [countries, setCountries] = useState<Country[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
     async function handleSearch(value: string) {
-        setCityName(value);
+        setCountryName(value);
         setError(null);
 
         if (value.trim().length < 1) {
-            setCities([]);
-            setError("Escribe el nombre de una ciudad.");
+            setCountries([]);
+            setError("Escribe el nombre de un país.");
             return;
         }
 
         setLoading(true);
 
         try {
-            const res = await fetch(`/api/cities?cityName=${encodeURIComponent(value)}`);
+            const res = await fetch(`http://localhost:3001/countries?name=${encodeURIComponent(value)}`);
 
             if (!res.ok) {
-                throw new Error("Error al buscar ciudades");
+                throw new Error("Error al buscar países");
             }
 
             const response = await res.json();
 
             if (response.error) {
-                setError(response.reason);
-                setCities([]);
+                setError("Error de búsqueda de países");
+                setCountries([]);
                 return;
             }
 
-            setCities(response.cities);
+            setCountries(response.countries);
         } catch (err) {
             setError(
                 err instanceof Error ? err.message : "Error inesperado"
             );
-            setCities([]);
+            setCountries([]);
         } finally {
             setLoading(false);
         }
@@ -65,8 +58,9 @@ export const CitySearch = () => {
     
     async function formSubmit(e: React.FormEvent) {
       e.preventDefault();
-      await handleSearch(cityName);
+      await handleSearch(countryName);
     }
+
 
     return (
         <div className="flex flex-col items-center justify-start gap-[38px] w-full h-full">
@@ -82,24 +76,22 @@ export const CitySearch = () => {
                 </button>
                 <input
                     placeholder="Buscar..."
-                    value={cityName}
-                    onChange={(e) => setCityName(e.target.value)}
+                    value={countryName}
+                    onChange={(e) => setCountryName(e.target.value)}
                     className="placeholder:text-white/85 max-w-full"
                 />
                 </form>
-                <Link href="/cities" className="cursor-default">
-                  <span title="Escribe el nombre de la ciudad y revisa su clima">
-                    <Image src="/help-circle.svg" alt="help icon" width={24} height={24} />
-                  </span>
-                </Link>
+                <span title="Escribe el nombre de la ciudad y revisa su clima">
+                  <Image src="/help-circle.svg" alt="help icon" width={24} height={24} />
+                </span>
             </div>
 
             {error && (
                 <p className="text-red-600 font-medium">{error}</p>
             )}
 
-            <CityBoard
-                cities={cities}
+            <CountryBoard
+                countries={countries}
                 loading={loading}
             />
         </div>

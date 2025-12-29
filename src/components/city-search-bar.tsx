@@ -1,9 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { Search } from "lucide-react";
 import { useState } from "react";
-import { CityBoard } from "./city-board";
 
 type City = {
     id: number;

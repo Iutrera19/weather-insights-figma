@@ -118,7 +118,7 @@
             
             {/* HEADER */}
             <div className="flex flex-col justify-center items-center gap-[3px] h-[43px]">
-            <h1 className="font-semibold text-lg">{city.name} - {city.country}</h1>
+            <h1 className="font-semibold text-lg">{city.name}</h1>
             <h2 className="text-[10px]">PRONÓSTICO PARA 5 DÍAS</h2>
             </div>
 

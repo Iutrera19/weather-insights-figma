@@ -26,18 +26,51 @@ type City = {
     country_code: string;
 }
 
-export const CityDetailsSearch = () => {
+export const CityDetailsSearch = ({ countryCode, countryName }: { countryCode: string; countryName: string }) => {
     const [cityName, setCityName] = useState("");
     const [cities, setCities] = useState<City[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [filter, setFilter] = useState<string>("Todos");
 
-    async function handleSearch(value: string) {
-        setCityName(value);
+    // useEffect(() => {
+    //     // Busqueda inicial mostrando 8 ciudades
+    //   const fetchInitialCities = async () => {
+    //     setLoading(true);
+    //     setError(null);
+    //     try {
+    //       const res = await fetch(`http://localhost:3001/countries/${encodeURIComponent(countryName.toLowerCase())}/cities`);
+    //       const cityData = (await res.json()).cities;
+
+    //       const cities: City[] = cityData.map(async (city: string) => {
+    //         const res = await fetch(`/api/cities?cityName=${encodeURIComponent(city)}&countryCode=${encodeURIComponent(countryCode)}`)
+    //         const response = await res.json();
+    //         return response.cities[0];
+    //       });
+
+    //       const resolvedCities = (await Promise.all(cities)).flat();
+
+    //       setCities(resolvedCities);
+
+    //     } catch (err) {
+    //       console.log(err);
+    //       setError(
+    //         err instanceof Error ? err.message : "Error inesperado"
+    //       );
+    //       setCities([]);
+    //     } finally {
+    //       setLoading(false);
+    //     }
+    //   };
+
+    //   fetchInitialCities();
+    // }, []);
+
+    async function handleSearch(city: string, country_code: string) {
+        setCityName(city);
         setError(null);
 
-        if (value.trim().length < 1) {
+        if (city.trim().length < 1) {
             setCities([]);
             setError("Escribe el nombre de una ciudad.");
             return;
@@ -46,7 +79,7 @@ export const CityDetailsSearch = () => {
         setLoading(true);
 
         try {
-            const res = await fetch(`/api/cities?cityName=${encodeURIComponent(value)}`);
+            const res = await fetch(`/api/cities?cityName=${encodeURIComponent(city)}&countryCode=${encodeURIComponent(country_code)}`);
 
             if (!res.ok) {
                 throw new Error("Error al buscar ciudades");
@@ -73,7 +106,7 @@ export const CityDetailsSearch = () => {
 
     async function formSubmit(e: React.FormEvent) {
       e.preventDefault();
-      await handleSearch(cityName);
+      await handleSearch(cityName, countryCode);
     }
 
     if (error) {
@@ -82,9 +115,9 @@ export const CityDetailsSearch = () => {
                 <div className="flex flex-col gap-4 w-full md:flex-row md:justify-between md:gap-[38px]">
                 <div className="flex flex-row gap-[24px] flex-wrap justify-center">
                     <div className="flex flex-row gap-[8px] items-center">
-                        {/* <Image src={`https://flagcdn.com/${countryCode.toLowerCase()}.svg`} alt="help icon" width={24} height={24} className="rounded-full"/> */}
-                        <Image src={`/CL.svg`} alt="help icon" width={24} height={24} className="rounded-full" />
-                        <p className={`text-white ${inter.className}`}>{"Chile"}</p>
+                        <Image src={`https://flagcdn.com/${countryCode.toLowerCase()}.svg`} alt="help icon" width={24} height={24} className="rounded-full"/>
+                        {/* <Image src={`/CL.svg`} alt="help icon" width={24} height={24} className="rounded-full" /> */}
+                        <p className={`text-white ${inter.className}`}>{countryName}</p>
                     </div>
                     <FilterSelector filter={filter} onFilterChange={setFilter} />
                 </div>
@@ -126,9 +159,9 @@ export const CityDetailsSearch = () => {
                 <div className="flex flex-col gap-4 w-full md:flex-row md:justify-between md:gap-[38px]">
                 <div className="flex flex-row gap-[24px] flex-wrap justify-center">
                     <div className="flex flex-row gap-[8px] items-center">
-                        {/* <Image src={`https://flagcdn.com/${countryCode.toLowerCase()}.svg`} alt="help icon" width={24} height={24} className="rounded-full"/> */}
-                        <Image src={`/CL.svg`} alt="help icon" width={24} height={24} className="rounded-full" />
-                        <p className={`text-white ${inter.className}`}>{"Chile"}</p>
+                        <Image src={`https://flagcdn.com/${countryCode.toLowerCase()}.svg`} alt="help icon" width={24} height={24} className="rounded-full"/>
+                        {/* <Image src={`/CL.svg`} alt="help icon" width={24} height={24} className="rounded-full" /> */}
+                        <p className={`text-white ${inter.className}`}>{countryName}</p>
                     </div>
                     <FilterSelector filter={filter} onFilterChange={setFilter} />
                 </div>
@@ -165,9 +198,9 @@ export const CityDetailsSearch = () => {
             <div className="flex flex-col gap-4 w-full md:flex-row md:justify-between md:gap-[38px]">
                 <div className="flex flex-row gap-[24px] flex-wrap justify-center">
                     <div className="flex flex-row gap-[8px] items-center">
-                        {/* <Image src={`https://flagcdn.com/${countryCode.toLowerCase()}.svg`} alt="help icon" width={24} height={24} className="rounded-full"/> */}
-                        <Image src={`/CL.svg`} alt="help icon" width={24} height={24} className="rounded-full" />
-                        <p className={`text-white ${inter.className}`}>{"Chile"}</p>
+                        <Image src={`https://flagcdn.com/${countryCode.toLowerCase()}.svg`} alt="help icon" width={24} height={24} className="rounded-full"/>
+                        {/* <Image src={`/CL.svg`} alt="help icon" width={24} height={24} className="rounded-full" /> */}
+                        <p className={`text-white ${inter.className}`}>{countryName}</p>
                     </div>
                     <FilterSelector filter={filter} onFilterChange={setFilter} />
                 </div>

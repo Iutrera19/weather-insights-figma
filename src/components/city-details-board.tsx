@@ -32,7 +32,7 @@ export const CityDetailsBoard = ({cities, loading, filter}: {cities: City[], loa
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-[16px] w-full md:px-[20px]">
       {cities.map((city) => (
         <CityDetailsCard
-          key={city.id}
+          key={city.name + city.latitude + city.longitude}
           city={city}
           filter={filter}
         />

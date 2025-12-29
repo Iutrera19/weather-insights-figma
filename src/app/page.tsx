@@ -1,10 +1,10 @@
 import Image from "next/image";
 
 // import { CityList } from "@/app/cities/city-list";
-import { CitySearch } from "@/components/city-search";
+import { CountrySearch } from "@/components/country-search";
 
 export default function Home() {
   return (
-    <CitySearch />
+    <CountrySearch />
   );
 }

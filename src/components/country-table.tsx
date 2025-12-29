@@ -26,7 +26,7 @@ export const CityTable = ({ cities, loading, onSelectCity, compare}: {cities: Ci
     );
   }
   if (!cities.length || cities.length === 0) {
-    return <p>No se encontraron ciudades</p>
+    return <p>No se encontraron países</p>
   }
   return (
     <>

@@ -1,20 +1,16 @@
 "use client"
 
-import { CityCard } from "./city-card";
+import { CountryCard } from "./country-card";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
-type City = {
-  id: number;
+type Country = {
+  iso2: string;
   name: string;
-  latitude: number;
-  longitude: number;
-  country: string;
-  admin1?: string;
-  timezone: string;
-  country_code: string;
+  long: number;
+  lat: number;
 }
 
-export const CityBoard = ({ cities, loading}: {cities: City[], loading: boolean}) => {
+export const CountryBoard = ({ countries, loading}: {countries: Country[], loading: boolean}) => {
 
   // const [selectedCity, setSelectedCity] = useState<City | null>(null);
 
@@ -26,15 +22,15 @@ export const CityBoard = ({ cities, loading}: {cities: City[], loading: boolean}
       </>
     );
   }
-  if (!cities.length || cities.length === 0) {
-    return <p className="text-white">No se encontraron ciudades</p>
+  if (!countries.length || countries.length === 0) {
+    return <p className="text-white">No se encontraron países</p>
   }
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-[16px] w-full md:px-[20px]">
-      {cities.map((city) => (
-        <CityCard
-          key={city.id}
-          city={city}
+      {countries.map((country) => (
+        <CountryCard
+          key={country.iso2}
+          country={country}
         />
       ))}
     </div>

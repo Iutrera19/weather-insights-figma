@@ -15,15 +15,11 @@ const inter = Inter({
   weight: ["400", "700"],
 });
 
-type City = {
-  id: number;
+type Country = {
+  iso2: string;
   name: string;
-  latitude: number;
-  longitude: number;
-  country: string;
-  admin1?: string;
-  timezone: string;
-  country_code: string;
+  long: number;
+  lat: number;
 }
 
 type WeatherForecast = {
@@ -43,7 +39,7 @@ type WeatherForecast = {
   error?: boolean;
 };
 
-export const CityCard = ({ city }: { city: City }) => {
+export const CountryCard = ({ country }: { country: Country }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [forecast, setForecast] = useState<WeatherForecast | null>(null);
@@ -55,9 +51,9 @@ export const CityCard = ({ city }: { city: City }) => {
 
       try {
         const res = await fetch(
-          `/api/city-weather?latitude=${city.latitude.toFixed(
+          `/api/city-weather?latitude=${country.lat.toFixed(
             2
-          )}&longitude=${city.longitude.toFixed(2)}`
+          )}&longitude=${country.long.toFixed(2)}`
         );
 
         if (!res.ok) {
@@ -80,7 +76,7 @@ export const CityCard = ({ city }: { city: City }) => {
     };
 
     fetchWeather();
-  }, [city]);
+  }, [country]);
   
   const weatherLabel = forecast
     ? stringifyWeatherCode(forecast.current.weather_code, forecast.current.precipitation_probability)
@@ -101,12 +97,12 @@ return (
     <div className="relative z-10 flex flex-col p-[16px] gap-[24px] w-full h-full justify-center">
       <div className="flex flex-row h-full">
         <div className="min-w-[80px] h-[60px] flex justify-start">
-            <Image src={`https://flagcdn.com/${city.country_code.toLowerCase()}.svg`} alt="country flag" width={60} height={60} 
+            <Image src={`https://flagcdn.com/${country.iso2.toLowerCase()}.svg`} alt="country flag" width={60} height={60} 
               className="rounded-full"/>
         </div>
 
         <div className="flex flex-col gap-[9px] h-full w-full justify-start">
-          <h1 className={`font-semibold text-lg ${inter.className}`}>{city.name}</h1>
+          <h1 className={`font-semibold text-lg ${inter.className}`}>{country.name}</h1>
           <div className="flex flex-row items-center gap-[4px]">
             <TbTemperature
               style={{
@@ -147,7 +143,7 @@ return (
       </div>
 
       <div className="flex justify-end gap-[2px]">
-        <Link href={`/city/${city.id}`} className={`${inter.className}`}>Ver {">"}</Link>
+        <Link href={`/cities/?countryName=${encodeURIComponent(country.name)}&countryCode=${encodeURIComponent(country.iso2)}`} className={`${inter.className}`}>Ver {">"}</Link>
       </div>
     </div>
   </div>
