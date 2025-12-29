@@ -140,8 +140,9 @@
                         : new Date(date!).toLocaleDateString("es-ES", {
                             weekday: "short",
                             }).replace(/^./, c => c.toUpperCase())
-                        : (forecast?.error) ? "Error" : "Cargando..."}
+                        : "Cargando..."}
                     </p>
+
 
                     {/* CLIMA */}
                     <div className="flex flex-row flex-grow justify-end items-center gap-[4px] w-[70px]">

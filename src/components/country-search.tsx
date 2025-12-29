@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { CountryBoard } from "./country-board";
 import Image from "next/image";
 import { Search } from "lucide-react";
