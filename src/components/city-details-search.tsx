@@ -79,7 +79,7 @@ export const CityDetailsSearch = ({ countryCode, countryName }: { countryCode: s
         setLoading(true);
 
         try {
-            const res = await fetch(`/api/cities?cityName=${encodeURIComponent(city)}&countryCode=${encodeURIComponent(country_code)}`);
+            const res = await fetch(`http://localhost:3001/cities/find?cityName=${encodeURIComponent(city)}&countryCode=${encodeURIComponent(country_code)}`);
 
             if (!res.ok) {
                 throw new Error("Error al buscar ciudades");
