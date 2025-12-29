@@ -53,15 +53,23 @@ useEffect(() => {
     setError(null);
 
     try {
+
         const res = await fetch(
-        `/api/city-weather?latitude=${city.latitude.toFixed(
-            2
-        )}&longitude=${city.longitude.toFixed(2)}`
-        );
+          `http://localhost:3001/cities/weather`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              latitude: city.latitude,
+              longitude: city.longitude,
+            }),
+          }
+        )
 
         if (!res.ok) throw new Error("Weather API error");
 
-        const data: WeatherForecast = await res.json();
+        const data: WeatherForecast = (await res.json()).weather;
         setForecast(data);
     } catch {
         setError("Error al cargar el pronóstico");

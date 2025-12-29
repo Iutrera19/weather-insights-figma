@@ -31,7 +31,7 @@ export const CountrySearch = () => {
     setLoading(true);
 
     try {
-      const res = await fetch(`http://localhost:3001/countries?name=${encodeURIComponent(value)}`);
+      const res = await fetch(`http://localhost:3001/countries/find?name=${encodeURIComponent(value)}`);
 
       if (!res.ok) {
           throw new Error("Error al buscar países");
