@@ -10,6 +10,7 @@ import { AiOutlineThunderbolt } from "react-icons/ai";
 import { BsCloudRain, BsCloudSun } from "react-icons/bs";
 import { BsSun } from "react-icons/bs";
 import { Inter } from "next/font/google";
+const countries = require("i18n-iso-countries");
 
 const inter = Inter({
   subsets: ["latin"],
@@ -49,6 +50,8 @@ export const CountryCard = ({ country }: { country: Country }) => {
     const fetchWeather = async () => {
       setLoading(true);
       setError(null);
+
+      const countryName = countries.getName(country.iso2, "es") || country.name;
 
       try {
         const res = await axios.post('http://localhost:3001/cities/weather', {
@@ -98,7 +101,7 @@ return (
         </div>
 
         <div className="flex flex-col gap-[9px] h-full w-full justify-start">
-          <h1 className={`font-semibold text-lg ${inter.className}`}>{country.name}</h1>
+          <h1 className={`font-semibold text-lg ${inter.className}`}>{country.name.charAt(0).toUpperCase() + country.name.slice(1)}</h1>
           <div className="flex flex-row items-center gap-[4px]">
             <TbTemperature
               style={{
